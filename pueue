@@ -1,0 +1,21 @@
+# Pueue
+
+## Enqueue a task for execution
+
+pueue add
+
+## Display the current status of all tasks
+
+pueue status
+
+## Kill all tasks, clean up afterwards and reset EVERYTHING!
+
+pueue reset
+
+## Display the log output of finished tasks. Prints either all logs or only the logs of specified tasks
+
+pueue log
+
+##Follow the output of a currently running task. This command works like tail -f
+
+pueue follow
