@@ -30,3 +30,17 @@ keybase decrypt --infile {{input_file}} --outfile {{output_file}}
 - Revoke current device, log out, and delete local data:
 
 keybase deprovision
+
+## Keybase pgp
+
+### Create a new GPG key on keybase.io
+
+keybase pgp gen --multi
+
+### Import your PUBLIC PGP key:
+
+keybase pgp export -q "${GPG_SIGNING_KEY}" | gpg --import
+
+### Import SECRET PGP key:
+
+keybase pgp export -q "${GPG_SIGNING_KEY}" -s | gpg --allow-secret-key-import --import
