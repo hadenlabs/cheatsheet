@@ -3,3 +3,15 @@ rename 'y/A-Z/a-z/' *
 
 # To replace 'sometext' with 'replacedby' in all files in current directory:
 rename 's/sometext/replacedby/' *
+
+# Replace spaces in filenames with underscores
+
+rename 'y/ /\_/' *
+
+# Convert filenames to lowercase
+
+rename 'y/A-Z/a-z/' *
+
+# Convert filenames to upercase
+
+rename 'y/a-z/A-Z/' *
