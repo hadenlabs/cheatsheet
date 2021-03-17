@@ -1,7 +1,7 @@
 # gpg
 
-GNU Privacy Guard.
-More information: <https://gnupg.org>.
+* GNU Privacy Guard.
+* More information: <https://gnupg.org>.
 
 ## Generate a PGP key:
 
@@ -17,30 +17,78 @@ EOF
 
 ```
 
+## gpg version
+
+gpg --version
+
+## gpg generate key
+
+gpg --gen-key
+
+## list keys
+
+gpg --list-keys
+
 ## Sign doc.txt without encryption (writes output to doc.txt.asc):
 
-gpg --clearsign {{doc.txt}}
+gpg --clearsign <doc.txt>
 
 ## Encrypt doc.txt for alice@example.com (output to doc.txt.gpg):
 
-gpg --encrypt --recipient {{alice@example.com}} {{doc.txt}}
+gpg --encrypt --recipient <alice@example.com> <doc.txt>
 
 ## Encrypt doc.txt with only a passphrase (output to doc.txt.gpg):
 
-gpg --symmetric {{doc.txt}}
+gpg --symmetric <doc.txt>
 
 ## Decrypt doc.txt.gpg (output to stdout):
 
-gpg --decrypt {{doc.txt.gpg}}
+gpg --decrypt <doc.txt.gpg>
 
 ## Import a public key:
 
-gpg --import {{public.gpg}}
+gpg --import <public.gpg>
 
 ## Export public key for alice@example.com (output to stdout):
 
-gpg --export --armor {{alice@example.com}}
+gpg --export --armor <alice@example.com>
 
 ## Export private key for alice@example.com (output to stdout):
 
-gpg --export-secret-keys --armor {{alice@example.com}}
+gpg --export-secret-keys --armor <alice@example.com>
+
+## distribute public key to key server
+
+gpg --keyserver <key_server> --send-keys <public_key>
+
+## export public key
+
+gpg --output <filename_gpg> --export <key_name>
+
+## import public key
+
+gpg --import <filename_gpg>
+
+## encrypt document
+
+gpg --output <output_filename_gpg> --encrypt --recipient <public_key> <input_filename>
+
+## decrypt document
+
+gpg --output <filename> --decrypt <filename_gpg>
+
+## make a signature
+
+gpg --output <filename_sig> --sign <filename>
+
+## verify signature
+
+gpg --output <filename> <filename> --decrypt <filename_sig>
+
+## clearsign documents
+
+gpg --clearsign <filename>
+
+## detach signature
+
+gpg --output <filename_sig> --detach-sig <filename>
