@@ -1,25 +1,69 @@
 # firebase
 
-> Firebase Command Line Interface (CLI) Tools.
-> Used to test, manage, and deploy your Firebase project from the command line.
-> More information: <https://github.com/firebase/firebase-tools>.
+* Firebase Command Line Interface (CLI) Tools.
+* Used to test, manage, and deploy your Firebase project from the command line.
+* More information: <https://github.com/firebase/firebase-tools>.
 
-- Login:
+## Login:
 
 firebase login
 
-- Display the help:
+## Generate a token for CI
+
+firebase login:ci
+
+## Logout
+
+firebase logout
+
+## Init a new project
+
+firebase init [feature]
+
+## Display the help:
 
 firebase help
 
-- List existing firebase projects:
+## List existing firebase projects:
 
 firebase project:list
 
-- Setup a firebase in the current directory:
+## Setup a firebase in the current directory:
 
-firebase init {{options}} {{feature}}
+firebase init <options> <feature>
 
-- Deploy code and assets to the project in the current directory:
+## Deploy code and assets to the project in the current directory:
 
 firebase deploy
+
+## Deploy specific feature
+
+firebase deploy --only <feature>
+
+## Deploy specific content for feature
+
+firebase deploy --only <feature>:<content_folder>
+
+## Deploy from CI
+
+firebase deploy --token <token_for_ci>
+
+## List of projects you have access to
+
+firebase projects:list
+
+## Set current project
+
+firebase use [options] [alias_or_project_id]
+
+## Serve all allowed content
+
+firebase serve
+
+## Serve specific feature
+
+firebase serve --only <feature>
+
+## Serve specific content for feature
+
+firebase serve --only <feature>:<content_folder>
