@@ -24,6 +24,10 @@ fd {{pattern}} {{path/to/directory}}
 
 fd --hidden --no-ignore {{pattern}}
 
-- Execute a command on each search result returned:
+## Execute a command on each search result returned:
 
 fd {{pattern}} --exec {{command}}
+
+## Execute git pull on each search result returned
+#
+fd ".git$" --type d --hidden --exec bash -c 'cd "$1/../" && git pull' bash {}
