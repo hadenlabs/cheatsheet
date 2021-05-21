@@ -30,3 +30,7 @@ git clone --depth {{10}} {{remote_repository_location}}
 - Clone an existing repository only fetching a specific branch:
 
 git clone --branch {{name}} --single-branch {{remote_repository_location}}
+
+- Clone using token:
+
+https://{{token}}@{{remote_repository_location}}
