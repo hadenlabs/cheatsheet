@@ -1,0 +1,8 @@
+# sslscan
+
+> sslscan. 
+> More information: <https://github.com/rbsec/sslscan>.
+
+## Scan a ssl web:
+
+sslscan {{url}}
