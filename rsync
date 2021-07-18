@@ -23,6 +23,10 @@ rsync -r {{remote_host}}:{{path/to/remote_directory}} {{path/to/local_directory}
 
 rsync -r {{remote_host}}:{{path/to/remote_directory}}/ {{path/to/local_directory}}
 
+- Transfer files directory contents (but not the directory itself) from a remote to local:
+
+rsync -avhP --include='*.{{extension}}' --include='*/' --exclude='*' --prune-empty-dirs {{remote_host}}:{{path/to/remote}} {{path/to/destiny}}/
+
 - Transfer a directory [r]ecursively, in [a]rchive to preserve attributes, resolving contained soft[l]inks , and ignoring already transferred files [u]nless newer:
 
 rsync -rauL {{remote_host}}:{{path/to/remote_file}} {{path/to/local_directory}}
