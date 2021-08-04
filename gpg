@@ -17,6 +17,26 @@ EOF
 
 ```
 
+## Generate a PGP key by file:
+
+```
+%no-protection
+Key-Type: RSA
+Key-Length: 3072
+Key-Usage: sign,cert
+Subkey-Type: RSA
+Subkey-Length: 3072
+Subkey-Usage: encrypt
+Name-Real: Name
+Name-Email: email@domain.com
+Expire-Date: 0
+%commit
+```
+
+```bash
+gpg --batch --gen-key file.conf
+```
+
 ## gpg version
 
 gpg --version
