@@ -1,0 +1,27 @@
+# microk8s
+
+> Low-ops, minimal production Kubernetes, for devs, cloud, clusters, workstations, Edge and IoT.
+> More information: <https://microk8s.io>.
+
+## Install
+
+snap install microk8s --classic
+
+## Latest
+
+snap install microk8s --classic --channel=1.17/stable
+
+## Set Group
+
+sudo usermod -a -G microk8s $USER
+
+> Logout from your workstation session and login again.
+> Useful commands
+
+## Get kubeconfig
+
+microk8s.config > $HOME/.kube/config
+
+## Reset cluster
+
+microk8s reset --destroy-storage
