@@ -38,3 +38,11 @@ cat {{file.json}} | jq 'unique | sort | reverse'
 - Output the value of a given key to a string (and disable JSON output):
 
 cat {{file.json}} | jq --raw-output '"some text: \(.{{key_name}})"'
+
+- Search in array by select jq :
+
+cat {{file.json}} | jq '.{{key_name}} | map( select( .{{key_name}} == "value" ) )'
+
+- Search in array by select jq :
+
+cat {{file.json}} | jq 'map( select( .{{key_name}} == "value" ) )'
