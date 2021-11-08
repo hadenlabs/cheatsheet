@@ -25,3 +25,9 @@ stat -c "%U %G" {{file}}
 - Show the size of the file in bytes:
 
 stat -c "%s %n" {{file}}
+
+## stat
+
+- show permissions to file
+
+stat x {{file}}
