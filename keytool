@@ -1,0 +1,105 @@
+# Keytool CheatSheet 🔐
+
+## Creation and importing
+
+### Generate a Java keystore and key pair
+
+```bash
+keytool -genkeypair -keyalg RSA -keysize 2048 -keystore keystore.jks -alias server -validity 3650
+```
+
+### Generate a Java keystore and key pair and include Distinguished Name as one-liner and the Extensions
+
+```bash
+keytool -genkeypair -keyalg RSA -keysize 2048 -keystore keystore.jks -alias server -dname "CN=Hakan,OU=Amsterdam,O=Thunderberry,C=NL" -storepass secret -keypass secret -validity 3650 -ext KeyUsage=digitalSignature,dataEncipherment,keyEncipherment,keyAgreement -ext ExtendedKeyUsage=serverAuth,clientAuth -ext SubjectAlternativeName:c=DNS:localhost,DNS:IP:127.0.0.1
+```
+
+### Generate a Java keystore and import a certificate
+
+```bash
+keytool -importcert -file server.crt -keystore truststore.jks -alias server
+```
+
+### Generate a Root CA with signing capability
+
+```bash
+keytool -v -genkeypair -dname "CN=Root-CA,OU=Certificate Authority,O=Thunderberry,C=NL" -keystore root-ca.jks -storepass secret -keypass secret -keyalg RSA -keysize 2048 -alias root-ca -validity 3650 -ext KeyUsage=digitalSignature,keyCertSign -ext BasicConstraints=ca:true,PathLen:3
+```
+
+### Generate a certificate signing request (CSR) for an existing Java keystore
+
+```bash
+keytool -certreq -keyalg rsa -keystore keystore.jks -alias server -file server.csr
+```
+
+### Import a root or intermediate CA certificate to an existing Java keystore
+
+```bash
+keytool -import -trustcacerts -file root-ca.crt -alias my-newly-trusted-ca -keystore keystore.jks
+```
+
+## Checking
+
+### Check a stand-alone certificate
+
+```bash
+keytool -v -printcert -file server.crt
+```
+
+### Check a stand-alone certificate in PEM format
+
+```bash
+keytool -v -printcert -file server.crt -rfc
+```
+
+### Check which certificates are in a Java keystore
+
+```bash
+keytool -v -list -keystore keystore.jks
+```
+
+### Check a particular keystore entry using an alias
+
+```bash
+keytool -v -list -keystore keystore.jks -alias server
+```
+
+## Other commands
+
+### Delete a certificate from a Java keystore
+
+```bash
+keytool -delete -alias server -keystore keystore.jks
+```
+
+### Change a Java keystore password
+
+```bash
+keytool -storepasswd -keystore keystore.jks
+```
+
+### Signing a certificate with a certificate signing request (CSR)
+
+```bash
+keytool -v -gencert -infile server.csr -outfile server-signed.cer -keystore root-ca.jks -storepass secret -alias root-ca -validity 3650 -ext KeyUsage=digitalSignature,dataEncipherment,keyEncipherment,keyAgreement -ext ExtendedKeyUsage=serverAuth,clientAuth
+```
+
+## Exporting
+
+### Export a certificate to a .crt file in a binary format
+
+```bash
+keytool -exportcert -keystore keystore.jks -alias server -file server.crt
+```
+
+### Export a certificate to a .crt file in a pem format
+
+```bash
+keytool -exportcert -keystore keystore.jks -alias server -rfc -file server.crt
+```
+
+### Export Java keystore to a .p12 file
+
+```bash
+keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -srcstoretype jks -deststoretype pkcs12
+```
