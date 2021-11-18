@@ -1,0 +1,8 @@
+# openssl verify
+
+> OpenSSL command to create TLS client connections.
+> More information: <https://www.openssl.org/docs/manmaster/man1/openssl-s_client.html>.
+
+- Validate ca file
+
+openssl verify -CAfile {{FILE_ROOTNAME_CRT}} {{FILE_CERT}}
