@@ -26,3 +26,7 @@ glab pipeline list
 - Clone a repository into a specific directory:
 
 glab repo clone {{user}}/{{repository}} {{directory}}
+
+- Release
+
+glab release create {{tag}} -F TMP_CHANGELOG.md
