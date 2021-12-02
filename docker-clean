@@ -1,0 +1,24 @@
+## docker
+
+* Manage Docker containers and images.
+* More information: <https://docs.docker.com/engine/reference/commandline/cli/>.
+
+### Clean none/dangling images
+
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+
+## or
+
+docker images -q -f "dangling=true" | xargs docker image rm -f
+
+### Force clean none/dangling images
+
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc) -f
+
+## Clean volume dangling
+
+docker volume ls -q -f "dangling=true" | xargs docker volume rm -f
+
+## docker system prune
+
+docker system prune --all --force --volumes
