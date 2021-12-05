@@ -1,0 +1,50 @@
+# kubectl logs
+
+> logs objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs>.
+
+## dump pod logs (stdout)
+
+kubectl logs {{pod-name}}
+
+## dump pod logs, with label name=myLabel (stdout)
+
+kubectl logs -l name={{label-name}}
+
+## dump pod logs (stdout) for a previous instantiation of a container
+
+kubectl logs {{pod-name}} --previous
+
+## dump pod container logs (stdout, multi-container case)
+
+kubectl logs {{pod-name}} -c {{container-name}}
+
+## dump pod logs, with label name=myLabel (stdout)
+
+kubectl logs -l name={{label-name}} -c {{container-name}}
+
+## dump pod container logs (stdout, multi-container case) for a previous instantiation of a container
+
+kubectl logs {{pod-name}} -c {{container-name}} --previous
+
+## stream pod logs (stdout)
+
+kubectl logs -f {{pod-name}}
+
+## stream pod container logs (stdout, multi-container case)
+
+kubectl logs -f {{pod-name}} -c {{container-name}}
+
+## stream all pods logs with label name=myLabel (stdout)
+
+kubectl logs -f -l name={{label-name}} --all-containers
+
+## Deployment
+
+### dump Pod logs for a Deployment (single-container case)
+
+kubectl logs deploy/{{deployment-name}}
+
+### dump Pod logs for a Deployment (multi-container case)
+
+kubectl logs deploy/{{deployment-name}} -c {{container-name}}

@@ -1,0 +1,16 @@
+# kubectl run
+
+> run objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#run>.
+
+## Run pod as interactive shell
+
+kubectl run -i --tty busybox --image={{name-image}} -- sh
+
+## Run pod nginx in a specific namespace
+
+kubectl run {{pod-name}} --image={{name-image}} -n {{namespace}}
+
+## Run pod nginx and write its spec into a file called pod.yaml
+
+kubectl run {{pod-name}} --image={{name-image}} --dry-run=client -o yaml > pod.yaml

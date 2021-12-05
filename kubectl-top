@@ -1,0 +1,12 @@
+# kubectl top
+
+> top objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#top>.
+
+## Show metrics for a given pod and its containers
+
+kubectl top pod {{pod-name}} --containers
+
+## Show metrics for a given pod and sort it by 'cpu' or 'memory'
+
+kubectl top pod {{pod-name}} --sort-by={{cpu|memory}}

@@ -1,0 +1,8 @@
+# kubectl expose
+
+> expose objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#expose>.
+
+## Create a service for a replicated nginx, which serves on port 80 and connects to the containers on port 8000
+
+kubectl expose rc {{name-service}} --port=80 --target-port=8000

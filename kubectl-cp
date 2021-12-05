@@ -1,0 +1,20 @@
+# kubectl cp
+
+> cp objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#cp>.
+
+## Copy /tmp/foo_dir local directory to /tmp/bar_dir in a remote pod in the current namespace
+
+kubectl cp /tmp/foo_dir {{pod-name}}:/tmp/bar_dir
+
+## Copy /tmp/foo local file to /tmp/bar in a remote pod in a specific container
+
+kubectl cp /tmp/foo {{pod-name}}:/tmp/bar -c {{container-name}}
+
+## Copy /tmp/foo local file to /tmp/bar in a remote pod in namespace my-namespace
+
+kubectl cp /tmp/foo {{namespace}}/{{pod-name}}:/tmp/bar
+
+## Copy /tmp/foo from a remote pod to /tmp/bar locally
+#
+kubectl cp {{namespace}}/{{pod-name}}:/tmp/foo /tmp/bar

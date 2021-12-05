@@ -1,0 +1,16 @@
+# kubectl exec
+
+> exec objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#exec>.
+
+## Run command in existing pod (1 container case)
+
+kubectl exec {{pod-name}} -- ls /
+
+## Interactive shell access to a running pod (1 container case)
+
+kubectl exec --stdin --tty {{pod-name}} -- /bin/sh
+
+## Run command in existing pod (multi-container case)
+
+kubectl exec {{pod-name}} -c {{name-container}} -- ls /
