@@ -1,0 +1,28 @@
+# kubectl rollout
+
+> rollout objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rollout>.
+
+## Rolling update "www" containers of "frontend" deployment, updating the image
+
+kubectl set image deployment/{{name-deployment}} www=image:v2
+
+## Check the history of deployments including the revision
+
+kubectl rollout history deployment/{{name=deployment}}
+
+## Rollback to the previous deployment
+
+kubectl rollout undo deployment/{{name-deployment}}
+
+## Rollback to a specific revision
+
+kubectl rollout undo deployment/{{name-deployment}} --to-revision={{version}}
+
+## Watch rolling update status of "frontend" deployment until completion
+
+kubectl rollout status -w deployment/{{name-deployment}}
+
+## Rolling restart of the "frontend" deployment
+
+kubectl rollout restart deployment/{{name-deployment}}
