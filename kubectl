@@ -4,34 +4,42 @@
 > See also kubectl describe and other pages for additional information.
 > More information: <https://kubernetes.io/docs/reference/kubectl/>.
 
-- List information about a resource with more details:
+## List information about a resource with more details:
 
 kubectl get {{pod|service|deployment|ingress|...}} -o wide
 
-- Update specified pod with the label 'unhealthy' and the value 'true':
+## Update specified pod with the label 'unhealthy' and the value 'true':
 
 kubectl label pods {{name}} unhealthy=true
 
-- List all resources with different types:
+## List all resources with different types:
 
 kubectl get all
 
-- Display resource (CPU/Memory/Storage) usage of nodes or pods:
+## Display resource (CPU/Memory/Storage) usage of nodes or pods:
 
 kubectl top {{pod|node}}
 
-- Print the address of the master and cluster services:
+## Print the address of the master and cluster services:
 
 kubectl cluster-info
 
-- Display an explanation of a specific field:
+## Display an explanation of a specific field:
 
 kubectl explain {{pods.spec.containers}}
 
-- Print the logs for a container in a pod or specified resource:
+## Print the logs for a container in a pod or specified resource:
 
 kubectl logs {{pod_name}}
 
-- Run command in an existing pod:
+## Run command in an existing pod:
 
 kubectl exec {{pod_name}} -- {{ls /}}
+
+## Attach to Running Container
+
+kubectl attach {{pod-name}} -i
+
+## Listen on port 5000 on the local machine and forward to port 6000 on my-pod
+
+kubectl port-forward {{pod-name}} 5000:6000

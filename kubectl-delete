@@ -1,0 +1,28 @@
+# kubectl delete
+
+> Delete objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete>.
+
+## Delete a pod using the type and name specified in pod.json
+
+kubectl delete -f {{path/to/pod}}.json
+
+# Delete a pod with no grace period
+
+kubectl delete pod unwanted --now
+
+# Delete pods and services with same names "baz" and "foo"
+
+kubectl delete pod,service baz foo
+
+# Delete pods and services with label name=myLabel
+
+kubectl delete pods,services -l name={{label_name}}
+
+# Delete all pods and services in namespace my-ns,
+
+kubectl -n {{namespace}} delete pod,svc --all
+
+# Delete all pods matching the awk pattern1 or pattern2
+
+kubectl get pods  -n {{namespace}} --no-headers=true | awk '/pattern1|pattern2/{print $1}' | xargs  kubectl delete -n {{namespace}} pod

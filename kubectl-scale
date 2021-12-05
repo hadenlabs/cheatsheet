@@ -1,0 +1,20 @@
+# kubectl scale
+
+> scale objects of Kubernetes objects and resources.
+> More information: <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#scale>.
+
+## Scale a replicaset named 'foo' to 3
+
+kubectl scale --replicas={{nro_replicas}} rs/{{name-replicaset}}
+
+## Scale a resource specified in "foo.yaml" to 3
+
+kubectl scale --replicas={{nro_replicas}} -f {{manifest.yaml}}
+
+## If the deployment named mysql's current size is 2, scale mysql to 3
+
+kubectl scale --current-replicas={{current_replicas}} --replicas={{nro_replicas}} deployment/{{name-deployment}}
+
+## Scale multiple replication controllers
+
+kubectl scale --replicas={{nro_replicas}} rc/foo rc/bar rc/baz
