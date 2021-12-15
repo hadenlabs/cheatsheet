@@ -48,6 +48,10 @@ kubectl config set-context --current --namespace={{namespace}}
 kubectl config set-context {{name-context}} --user={{user-cluster}} --namespace={{namespace}} \
   && kubectl config use-context {{name-context}}
 
+### set a context utilizing a specific cluster, username and namespace.
+
+kubectl config set-context {{context-name}} --cluster={{cluster-name}} --user={{username}} --namespace={{namespace}}
+
 ### delete user foo
 
-kubectl config unset users.foo
+kubectl config unset users.{{username}}
