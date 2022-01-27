@@ -1,0 +1,105 @@
+# logcli
+
+## Get Started
+
+### Install
+
+```bash
+wget https://github.com/grafana/loki/releases/download/v1.6.1/logcli-darwin-amd64.zip
+unzip logcli-darwin-amd64.zip
+sudo mv logcli-darwin-amd64 /usr/local/bin/logcli
+```
+
+### Configure the environment:
+
+```bash
+export LOKI_ADDR=https://loki.domain.com
+export LOKI_USERNAME=x
+export LOKI_PASSWORD=x
+```
+
+## Discover Labels
+
+```bash
+logcli labels
+```
+
+### Vew all the job labels:
+
+```bash
+logcli labels job
+```
+
+## Analyze Labels
+
+```bash
+logcli series '{job="dev/dockerlogs"}' --analyze-labels
+```
+
+## Query
+
+### Query by label value:
+
+```bash
+logcli query '{job="dev/dockerlogs"}'
+```
+
+### Query by label value and match filter expression:
+
+```bash
+logcli query '{job="dev/dockerlogs"} |= "this string"'
+```
+
+### Query by label value and dont match filter expression:
+
+```bash
+logcli query '{job="dev/dockerlogs"} != "this string"'
+```
+
+### Query by label value and regex match filter expression:
+
+```bash
+logcli query '{job="dev/dockerlogs"} |~ "this string: (true|false)"'
+```
+
+### Query by label value and dont match regex filter expression:
+
+```bash
+logcli query '{job="dev/dockerlogs"} !~ "this string and .+"'
+```
+
+## Tail:
+
+```bash
+logcli query '{job="dev/dockerlogs"}' --tail
+```
+
+### Since 4h ago:
+
+```bash
+logcli query '{job="dev/dockerlogs"}' --since 4h
+```
+
+### Last 10 lines:
+
+```bash
+logcli query '{job="dev/dockerlogs"}' --last 10
+```
+
+### Piping:
+
+```bash
+logcli query '{job="dev/dockerlogs"} |= "error"' | grep -i message
+```
+
+### Suppress log labels:
+
+```bash
+logcli query -q '{job="dev/dockerlogs"}'
+```
+
+### Change output:
+
+```bash
+logcli query -o raw '{job="dev/dockerlogs"}'
+```
