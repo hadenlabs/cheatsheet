@@ -1,0 +1,105 @@
+# kubectl configmap
+
+> A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
+> More information: <https://kubernetes.io/docs/concepts/configuration/configmap>.
+
+## create
+
+### imperative literals
+
+```bash
+kubectl create configmap appconfigmap \
+  --from-literal=name=mclane \
+  --from-literal=catchphrase=yippeekiyay
+```
+
+### imperative from file
+
+```bash
+kubectl create configmap appconfigmap --from-file config.txt
+```
+
+### declarative multiple entries
+
+```yaml
+apiVersion: v1
+data:
+  config.txt: |
+    name=gruber
+    home: nakatomi
+kind: ConfigMap
+metadata:
+  name: appconfigmap
+```
+
+### declarative single entries
+
+```yaml
+apiVersion: v1
+data:
+  catchphrase: yippeekiyay
+  name: mclane
+kind: ConfigMap
+metadata:
+  name: appconfigmap
+```
+
+### mount a configmap in a pod
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginxsec
+  name: nginxsec
+spec:
+  containers:
+  - image: nginx
+    name: nginxsec
+    volumeMounts:
+    - name: configmap
+      mountPath: /tmp
+  volumes:
+  - name: configmap
+    configMap:
+      Name: appconfigmap
+```
+
+### ConfigMaps as Environment Variables [Individual]
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+  name: nginxenv
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    env:
+    - name: DB_USER
+      valueFrom:
+        configMapKeyRef:
+          name: appConfigMap
+          key: name
+```
+
+### ConfigMaps as Environment Variables [–from-env-file]
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+  name: nginxenv
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    envFrom:
+      - configMapRef:
+          name: appConfigMap
+
+```
