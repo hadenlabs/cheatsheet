@@ -1,6 +1,3 @@
----
-tags [ networking ]
----
 # To display wireless settings of the first wireless adapter:
 iwconfig wlan0
 

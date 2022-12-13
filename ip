@@ -1,6 +1,3 @@
----
-tags [ networking ]
----
 # To display all interfaces with addresses:
 ip addr
 
