@@ -1,6 +1,3 @@
----
-tags: [ ssh ]
----
 # To add private key:
 ssh-add <keyfile>
 
