@@ -14,3 +14,6 @@ kubectl run {{pod-name}} --image={{name-image}} -n {{namespace}}
 ## Run pod nginx and write its spec into a file called pod.yaml
 
 kubectl run {{pod-name}} --image={{name-image}} --dry-run=client -o yaml > pod.yaml
+
+## Run pod curl for debug
+kubectl run -i --tty --rm debug --namespace {{namespace-name}} --image=curlimages/curl --restart=Never -- sh
